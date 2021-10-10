@@ -77,11 +77,11 @@ function css() {
   return src(path.src.css)
     .pipe(scss({ outputStyle: "expanded" }).on("error", scss.logError))
     .pipe(group_media())
-    .pipe(
-      autoprefixer({
-        cascade: true,
-      })
-    )
+		.pipe(autoprefixer({
+			overrideBrowserslist: ['last 4 versions'],
+			cascade: true,
+			grid: true,
+		}))
     .pipe(webpcss({ webpClass: ".webp", noWebpClass: ".no-webp" }))
     .pipe(dest(path.build.css))
     .pipe(clean_css())
